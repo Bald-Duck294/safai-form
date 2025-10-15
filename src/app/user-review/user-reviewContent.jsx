@@ -25,10 +25,10 @@ import { useSearchParams } from 'next/navigation';
 const reviewSchema = z.object({
     name: z.string().min(1, "Name is required"),
     email: z.string().email("A valid email is required"),
-    phone: z
-        .string()
-        .min(10, "A valid 10-digit phone number is required")
-        .max(10, "Phone number should be 10 digits"),
+    phone: z.union([
+        z.string().min(10, "Phone must be at least 10 digits"),
+        z.literal(""),
+    ]).optional(),
     rating: z.number().min(1, "Rating is required").max(10),
     reason_ids: z.array(z.number()),
     description: z.string().optional(),
@@ -75,7 +75,7 @@ const translations = {
         fields: {
             name: "Name *",
             email: "Email *",
-            phone: "Phone *",
+            phone: "Phone ",
             additional: "Additional Comments (Optional)",
             selectIssues: "Select Observed Issues (Optional):",
         },
@@ -127,7 +127,7 @@ const translations = {
         fields: {
             name: "नाम *",
             email: "ईमेल *",
-            phone: "फ़ोन नंबर *",
+            phone: "फ़ोन नंबर ",
             additional: "अतिरिक्त टिप्पणियाँ (वैकल्पिक)",
             selectIssues: "देखी गई समस्याएँ चुनें (वैकल्पिक):",
         },
@@ -179,7 +179,7 @@ const translations = {
         fields: {
             name: "नाव *",
             email: "ईमेल *",
-            phone: "फोन नंबर *",
+            phone: "फोन नंबर ",
             additional: "अतिरिक्त टिप्पण्या (ऐच्छिक)",
             selectIssues: "नोट केलेल्या समस्या निवडा (ऐच्छिक):",
         },
@@ -342,13 +342,21 @@ export default function ReviewForm() {
             const formData = new FormData();
             formData.append("name", data.name);
             formData.append("email", data.email);
-            formData.append("phone", data.phone);
+
+            // formData.append("phone", data.phone);
             formData.append("rating", data.rating.toString());
             formData.append("description", data.description || "");
             formData.append("reason_ids", JSON.stringify(data.reason_ids));
             formData.append("latitude", data.location.latitude.toString());
             formData.append("longitude", data.location.longitude.toString());
             formData.append("toilet_id", toiletId);
+
+
+
+            // Only append phone if it has a value
+            if (data.phone && data.phone.trim() !== "") {
+                formData.append("phone", data.phone);
+            }
 
             // ✅ Simply append the compressed images
             images.forEach((img) => {
@@ -517,6 +525,7 @@ export default function ReviewForm() {
                             </p>
                         )}
                     </div>
+
                     <CloudinaryImageUploader
                         images={images}
                         onImagesChange={handleImagesChange}

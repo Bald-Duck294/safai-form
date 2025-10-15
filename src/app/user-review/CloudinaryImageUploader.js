@@ -105,12 +105,12 @@ export default function CloudinaryImageUploader({
         </label>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-9 max-w-3xl">
         <button
           type="button"
           onClick={openCamera}
           disabled={!canAddMore || loading}
-          className="flex items-center justify-center px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+          className="flex items-center justify-center px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
         >
           <Camera className="h-5 w-5 mr-2" />
           Take Photo
