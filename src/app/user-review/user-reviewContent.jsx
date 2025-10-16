@@ -336,6 +336,7 @@ export default function ReviewForm() {
 
 
     const handleSubmission = async (data) => {
+        console.log("in the handle submission form ")
         try {
             setIsSubmitting(true);
 
@@ -365,6 +366,8 @@ export default function ReviewForm() {
 
             // ✅ Send to your backend - it handles Cloudinary upload
             // http://localhost:8000/api/reviews/user-review
+
+            console.log("before  fetching")
             const res = await fetch("https://saaf-ai-backend.onrender.com/api/reviews/user-review", {
                 method: "POST",
                 body: formData, // No headers needed for FormData
@@ -374,6 +377,8 @@ export default function ReviewForm() {
             console.log(result, "result");
 
             if (!res.ok) {
+                console.log("in throw block");
+
                 throw new Error(result.error || "Failed to submit review");
             }
 
@@ -385,6 +390,7 @@ export default function ReviewForm() {
             setLocation(null);
             setTimeout(() => setShowSuccess(false), 5000);
         } catch (err) {
+            console.log('in catch block')
             console.error("Submission error:", err);
             toast.error(err.message || "Failed to submit review");
         } finally {
