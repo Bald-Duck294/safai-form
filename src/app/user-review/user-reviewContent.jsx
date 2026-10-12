@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   User,
   Mail,
@@ -15,6 +16,7 @@ import {
   Copy,
   MessageCircle,
   X,
+  ShieldCheck,
 } from "lucide-react";
 import SmileyRating from "./SmileyRating";
 import LocationDetector from "./LocationDetector";
@@ -135,6 +137,22 @@ const translations = {
       "Overflowing dustbins",
       "General grime (stained walls, dirty mirrors)",
     ],
+    header: {
+      inAssocWith: "In Association With",
+      facilityBadge: "Official Facility Cleanliness & Feedback System",
+      tatrTitle: "Tadoba-Andhari",
+      tatrSub: "Tiger Reserve (TATR)",
+      saafAiTitle: "SaafAI",
+      saafAiSub: "Smart Facility AI",
+    },
+    footer: {
+      inAssociationWith: "In association with",
+      saafAiTitle: "SaafAI",
+      saafAiSub: "AI Cleanliness Intelligence",
+      tatrTitle: "Tadoba-Andhari",
+      tatrSub: "Tiger Reserve (TATR)",
+      initiativeTag: "Smart Sanitation & Public Hygiene Monitoring Initiative",
+    },
   },
   hi: {
     title: "आपकी आवाज़ भारत को स्वच्छ बनाती है | SAAF AI",
@@ -224,6 +242,22 @@ const translations = {
       "ओवरफ्लो होते कूड़ेदान",
       "सामान्य गंदगी (दीवारों पर धब्बे, गंदे शीशे)",
     ],
+    header: {
+      inAssocWith: "के सहयोग से",
+      facilityBadge: "आधिकारिक सुविधा स्वच्छता एवं फीडबैक प्रणाली",
+      tatrTitle: "ताडोबा-अंधारी",
+      tatrSub: "टाइगर रिजर्व (TATR)",
+      saafAiTitle: "SaafAI",
+      saafAiSub: "स्मार्ट स्वच्छता तकनीक",
+    },
+    footer: {
+      inAssociationWith: "के सहयोग से",
+      saafAiTitle: "SaafAI",
+      saafAiSub: "एआई स्वच्छता प्रणाली",
+      tatrTitle: "ताडोबा-अंधारी",
+      tatrSub: "टाइगर रिजर्व (TATR)",
+      initiativeTag: "स्मार्ट स्वच्छता एवं जन सुविधा निगरानी पहल",
+    },
   },
   mr: {
     title: "तुमचा आवाज भारत स्वच्छ करतो | SAAF AI",
@@ -313,6 +347,22 @@ const translations = {
       "ओसंडून वाहणारे कचरापेटी",
       "सामान्य घाण (भिंतींवर डाग, घाणेरडे आरसे)",
     ],
+    header: {
+      inAssocWith: "यांच्या सहकार्याने",
+      facilityBadge: "अधिकृत सुविधा स्वच्छता आणि अभिप्राय प्रणाली",
+      tatrTitle: "ताडोबा-अंधारी",
+      tatrSub: "व्याघ्र प्रकल्प (TATR)",
+      saafAiTitle: "SaafAI",
+      saafAiSub: "स्मार्ट स्वच्छता तंत्रज्ञान",
+    },
+    footer: {
+      inAssociationWith: "यांच्या सहकार्याने",
+      saafAiTitle: "SaafAI",
+      saafAiSub: "एआय स्वच्छता प्रणाली",
+      tatrTitle: "ताडोबा-अंधारी",
+      tatrSub: "व्याघ्र प्रकल्प (TATR)",
+      initiativeTag: "स्मार्ट स्वच्छता आणि सार्वजनिक सुविधा देखरेख उपक्रम",
+    },
   },
 };
 
@@ -394,17 +444,23 @@ const JagrukNagrikPopup = ({
 
     // Set colors and fonts
     doc.setFillColor(37, 99, 235);
-    doc.rect(0, 0, 210, 40, "F");
+    doc.rect(0, 0, 210, 42, "F");
 
     // Header
     doc.setTextColor(255, 255, 255);
-    doc.setFontSize(24);
+    doc.setFontSize(22);
     doc.setFont(undefined, "bold");
-    doc.text("SAAF AI - Swachh Drishti", 105, 20, { align: "center" });
+    doc.text("SAAF AI - Swachh Drishti", 105, 17, { align: "center" });
+
+    doc.setFontSize(10);
+    doc.setFont(undefined, "normal");
+    doc.text("In association with Tadoba-Andhari Tiger Reserve", 105, 26, {
+      align: "center",
+    });
 
     doc.setFontSize(12);
-    doc.setFont(undefined, "normal");
-    doc.text("Contribution Receipt", 105, 30, { align: "center" });
+    doc.setFont(undefined, "bold");
+    doc.text("Contribution Receipt", 105, 36, { align: "center" });
 
     // Body
     doc.setTextColor(0, 0, 0);
@@ -927,147 +983,234 @@ export default function ReviewForm() {
 
   return (
     <>
-      <div className="max-w-3xl mx-auto p-4 sm:p-6">
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-8 text-white">
-            <div className="flex justify-between items-start">
-              <div>
-                <h1 className="text-3xl font-bold mb-3">
-                  {translations[lang].title}
-                </h1>
-                <p className="text-blue-100 text-lg">
-                  {translations[lang].subtitle}
-                </p>
-              </div>
-              <select
-                value={lang}
-                onChange={(e) => setLang(e.target.value)}
-                className="text-blue-700 bg-white border border-white rounded-full px-3 py-1 text-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white"
-              >
-                <option value="en">EN</option>
-                <option value="hi">HI</option>
-                <option value="mr">MR</option>
-              </select>
-            </div>
-          </div>
-          <form onSubmit={handleFormSubmit} className="p-6 sm:p-8 space-y-8">
-            <LocationDetector
-              location={location}
-              onLocationChange={handleLocationChange}
-              locationLabel={translations[lang].fields.washroomLocation}
-              buttonText={translations[lang].buttons.getCurrentLocation}
-              detectingText={translations[lang].buttons.detecting}
-              lang={lang}
-              translations={translations}
-            />
+      <div className="min-h-screen bg-slate-100/70 py-6 sm:py-10 px-3 sm:px-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-xl border border-slate-200/90 overflow-hidden">
+            {/* Executive Co-Branded Top Header (Exact Match to User Reference) */}
+            <div className="relative overflow-hidden">
+              {/* Deck 1: Institutional Partner Bar */}
+              <div className="bg-white px-5 py-4 sm:px-8 sm:py-5 border-b border-gray-150 flex flex-wrap items-center justify-between gap-4">
+                {/* Partner Logos Strip */}
+                <div className="flex items-center gap-3 sm:gap-6 flex-wrap">
+                  {/* Tadoba TATR Logo (Significantly bigger & more prominent) */}
+                  <div className="flex items-center flex-shrink-0">
+                    <Image
+                      src="/tadoba_logo.jpeg"
+                      alt="Tadoba-Andhari Tiger Reserve"
+                      width={96}
+                      height={96}
+                      className="h-16 sm:h-20 md:h-22 w-auto object-contain"
+                      priority
+                    />
+                  </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-4">
-                {translations[lang].ratingLabel}
-              </label>
-              <SmileyRating
-                rating={rating}
-                onRatingChange={handleRatingChange}
-                size={32}
-                ratingLabels={translations[lang].ratingLabels}
-              />
-              {rating === 0 && (
-                <p className="text-orange-600 text-xs mt-2">
-                  Rating is required
-                </p>
-              )}
-            </div>
+                  {/* Vertical Divider */}
+                  <div className="hidden sm:block h-10 sm:h-12 w-px bg-gray-200"></div>
 
-            <CloudinaryImageUploader
-              images={images}
-              onImagesChange={handleImagesChange}
-              maxImages={3}
-              maxSizeKB={500}
-              takePhotoText={translations[lang].buttons.takephoto}
-              uploadPhotosLabel={translations[lang].fields.uploadPhotos}
-            />
+                  {/* IN ASSOCIATION WITH Text */}
+                  <div className="flex items-center">
+                    <span className="text-[11px] sm:text-xs font-semibold tracking-wider text-gray-400 uppercase whitespace-nowrap">
+                      {translations[lang]?.header?.inAssocWith ||
+                        "IN ASSOCIATION WITH"}
+                    </span>
+                  </div>
 
-            <div>
-              {/* Header with Label and No Issues checkbox */}
-              <div className="flex items-center justify-between mb-4">
-                <label className="flex items-center text-sm font-medium text-gray-700">
-                  <CheckSquare className="h-4 w-4 mr-1" />
-                  {translations[lang].fields.selectIssues}
-                </label>
+                  {/* Vertical Divider */}
+                  <div className="hidden sm:block h-10 sm:h-12 w-px bg-gray-200"></div>
 
-                {/* No Issues Checkbox */}
-                <label className="flex items-center space-x-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={selectedReasons.includes(0)}
-                    onChange={() => handleNoIssuesToggle()}
-                    className="h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
-                  />
-                  <span className="text-sm font-medium text-gray-700">
-                    {translations[lang].fields.noIssues}
-                  </span>
-                </label>
-              </div>
+                  {/* SaafAI Flo Mascot & Typography */}
+                  <div className="flex items-center gap-3 flex-shrink-0">
+                    <Image
+                      src="/flo-mascot.webp"
+                      alt="SaafAI Mascot"
+                      width={56}
+                      height={72}
+                      className="h-14 sm:h-16 md:h-18 w-auto object-contain"
+                      priority
+                    />
+                    <div className="text-left">
+                      <div className="text-base sm:text-lg md:text-xl font-bold text-gray-900 leading-tight">
+                        {translations[lang]?.header?.saafAiTitle || "SaafAI"}
+                      </div>
+                      <div className="text-xs sm:text-sm text-gray-500 font-medium leading-tight mt-0.5">
+                        {translations[lang]?.header?.saafAiSub ||
+                          "Smart Facility AI"}
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-              {/* Issues Grid - Only show if "No Issues" is not selected */}
-              {!selectedReasons.includes(0) && (
-                <div className="grid sm:grid-cols-2 gap-3">
-                  {translations[lang].issues.map((issueText, index) => (
-                    <label
-                      key={commonIndianWashroomIssues[index].id}
-                      className="flex items-start space-x-3 p-4 rounded-lg border hover:bg-gray-50 cursor-pointer"
+                {/* Segmented Language Selector Pill */}
+                <div className="flex items-center bg-slate-50/90 border border-slate-200 rounded-xl p-1 gap-1 shadow-2xs">
+                  {["en", "hi", "mr"].map((l) => (
+                    <button
+                      key={l}
+                      type="button"
+                      onClick={() => setLang(l)}
+                      className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+                        lang === l
+                          ? "bg-blue-600 text-white font-bold shadow-xs"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                      }`}
                     >
-                      <input
-                        type="checkbox"
-                        checked={selectedReasons.includes(
-                          commonIndianWashroomIssues[index].id,
-                        )}
-                        onChange={() =>
-                          handleReasonToggle(
-                            commonIndianWashroomIssues[index].id,
-                          )
-                        }
-                        className="mt-0.5 h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
-                      />
-                      <span className="text-sm text-gray-700">{issueText}</span>
-                    </label>
+                      {l.toUpperCase()}
+                    </button>
                   ))}
                 </div>
-              )}
-            </div>
+              </div>
 
-            <div>
-              <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
-                <MessageSquare className="h-4 w-4 mr-1" />
-                {translations[lang].fields.additional}
-              </label>
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 resize-none text-black"
-                placeholder={translations[lang].placeholders.description}
+              {/* Deck 2: Deep Blue / Navy Gradient Banner */}
+              <div className="bg-gradient-to-r from-[#03153d] via-[#092d6e] to-[#144493] p-6 sm:p-8 pt-7 sm:pt-9 pb-7 sm:pb-9 text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-80 h-full bg-gradient-to-l from-blue-400/15 to-transparent pointer-events-none"></div>
+                <div className="relative z-10">
+                  {/* <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-xs font-medium mb-3.5 backdrop-blur-md shadow-2xs">
+                    <ShieldCheck className="w-4 h-4 text-blue-300" />
+                    <span>{translations[lang]?.header?.facilityBadge || "Official Facility Cleanliness & Feedback System"}</span>
+                  </div> */}
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-2.5 tracking-tight text-white leading-tight">
+                    {translations[lang].title}
+                  </h1>
+                  <p className="text-blue-100/90 text-sm sm:text-base font-normal max-w-xl leading-relaxed">
+                    {translations[lang].subtitle}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <form onSubmit={handleFormSubmit} className="p-6 sm:p-8 space-y-8">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-4">
+                  {translations[lang].ratingLabel}
+                </label>
+                <SmileyRating
+                  rating={rating}
+                  onRatingChange={handleRatingChange}
+                  size={32}
+                  ratingLabels={translations[lang].ratingLabels}
+                />
+                {rating === 0 && (
+                  <p className="text-orange-600 text-xs mt-2">
+                    Rating is required
+                  </p>
+                )}
+              </div>
+
+              <CloudinaryImageUploader
+                images={images}
+                onImagesChange={handleImagesChange}
+                maxImages={3}
+                maxSizeKB={500}
+                takePhotoText={translations[lang].buttons.takephoto}
+                uploadPhotosLabel={translations[lang].fields.uploadPhotos}
               />
-            </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting || rating === 0}
-              className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg font-medium hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center space-x-2 text-lg"
-            >
-              {isSubmitting ? (
-                <>
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
-                  <span>{translations[lang].buttons.submitting}</span>
-                </>
-              ) : (
-                <>
-                  <Send className="h-6 w-6" />
-                  <span>{translations[lang].buttons.submit}</span>
-                </>
-              )}
-            </button>
-          </form>
+              <div>
+                {/* Header with Label and No Issues checkbox */}
+                <div className="flex items-center justify-between mb-4">
+                  <label className="flex items-center text-sm font-medium text-gray-700">
+                    <CheckSquare className="h-4 w-4 mr-1" />
+                    {translations[lang].fields.selectIssues}
+                  </label>
+
+                  {/* No Issues Checkbox */}
+                  <label className="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={selectedReasons.includes(0)}
+                      onChange={() => handleNoIssuesToggle()}
+                      className="h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
+                    />
+                    <span className="text-sm font-medium text-gray-700">
+                      {translations[lang].fields.noIssues}
+                    </span>
+                  </label>
+                </div>
+
+                {/* Issues Grid - Only show if "No Issues" is not selected */}
+                {!selectedReasons.includes(0) && (
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {translations[lang].issues.map((issueText, index) => (
+                      <label
+                        key={commonIndianWashroomIssues[index].id}
+                        className="flex items-start space-x-3 p-4 rounded-lg border hover:bg-gray-50 cursor-pointer"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedReasons.includes(
+                            commonIndianWashroomIssues[index].id,
+                          )}
+                          onChange={() =>
+                            handleReasonToggle(
+                              commonIndianWashroomIssues[index].id,
+                            )
+                          }
+                          className="mt-0.5 h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
+                        />
+                        <span className="text-sm text-gray-700">
+                          {issueText}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
+                  <MessageSquare className="h-4 w-4 mr-1" />
+                  {translations[lang].fields.additional}
+                </label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 resize-none text-black"
+                  placeholder={translations[lang].placeholders.description}
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting || rating === 0}
+                className="w-full bg-blue-600 text-white py-4 px-6 rounded-xl font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed flex items-center justify-center space-x-2 text-base sm:text-lg shadow-sm hover:shadow-md transition-all active:scale-[0.99] cursor-pointer"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
+                    <span>{translations[lang].buttons.submitting}</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-6 w-6" />
+                    <span>{translations[lang].buttons.submit}</span>
+                  </>
+                )}
+              </button>
+            </form>
+
+            {/* Clean Industrial Footer Verification Bar */}
+            <div className="bg-slate-50/80 border-t border-slate-200/80 px-6 py-4 sm:px-8">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                  <span className="font-medium text-slate-700">
+                    {translations[lang]?.footer?.initiativeTag ||
+                      "Smart Sanitation & Public Hygiene Monitoring Initiative"}
+                  </span>
+                </div>
+                <div className="text-[11px] text-slate-400 font-medium">
+                  <span>Tadoba-Andhari Tiger Reserve × SaafAI</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Outer Industrial Trust Bar */}
+          <div className="mt-4 pb-6 text-center text-xs text-slate-400 font-normal">
+            <p>
+              © {new Date().getFullYear()} SaafAI &amp; Tadoba-Andhari Tiger
+              Reserve. Public Facility Feedback System.
+            </p>
+          </div>
         </div>
       </div>
 
