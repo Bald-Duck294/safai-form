@@ -28,3 +28,63 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* SaafAI Brand Text Logo (from Login Screen) */
+.brand-header {
+  text-align: center;
+}
+.brand-title {
+  font-size: clamp(1.15rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -1px;
+  line-height: 1.05;
+}
+.brand-title span {
+  background: linear-gradient(90deg, #6C5CE7 0%, #00D2D3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.brand-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: 0.2rem 0;
+}
+.brand-divider .line {
+  width: 18px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #3b4df2, transparent);
+}
+@media (min-width: 640px) {
+  .brand-divider .line {
+    width: 28px;
+  }
+}
+.brand-divider .text {
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+}
+@media (min-width: 640px) {
+  .brand-divider .text {
+    font-size: 0.65rem;
+    letter-spacing: 0.5em;
+    text-indent: 0.5em;
+  }
+}
+.brand-tagline {
+  font-size: 0.58rem;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-top: 0.15rem;
+  line-height: 1.15;
+}
+@media (min-width: 640px) {
+  .brand-tagline {
+    font-size: 0.74rem;
+  }
+}

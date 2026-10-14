@@ -243,7 +243,7 @@ const translations = {
       "सामान्य गंदगी (दीवारों पर धब्बे, गंदे शीशे)",
     ],
     header: {
-      inAssocWith: "के सहयोग से",
+      inAssocWith: "के साथ साझेदारी में",
       facilityBadge: "आधिकारिक सुविधा स्वच्छता एवं फीडबैक प्रणाली",
       tatrTitle: "ताडोबा-अंधारी",
       tatrSub: "टाइगर रिजर्व (TATR)",
@@ -575,17 +575,7 @@ const JagrukNagrikPopup = ({
                 </p>
               </div>
 
-              {/* Token Number - Show on First Step */}
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6">
-                <p className="text-xs xs:text-sm font-medium text-gray-600 mb-2 text-center">
-                  {t.tokenLabel}
-                </p>
-                <div className="flex items-center justify-center gap-2 xs:gap-3 flex-wrap">
-                  <span className="text-xl xs:text-2xl sm:text-3xl font-bold text-blue-700 tracking-wider break-all">
-                    {tokenNumber}
-                  </span>
-                </div>
-              </div>
+              {/* Token Number - Hidden as requested */}
 
               {/* Campaign Question */}
               <div className="text-center">
@@ -684,17 +674,7 @@ const JagrukNagrikPopup = ({
                 </p>
               </div>
 
-              {/* Token Number */}
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6">
-                <p className="text-xs xs:text-sm font-medium text-gray-600 mb-2 text-center">
-                  {t.tokenLabel}
-                </p>
-                <div className="flex items-center justify-center gap-2 xs:gap-3 flex-wrap">
-                  <span className="text-xl xs:text-2xl sm:text-3xl font-bold text-blue-700 tracking-wider break-all">
-                    {tokenNumber}
-                  </span>
-                </div>
-              </div>
+              {/* Token Number - Hidden as requested */}
 
               {/* Share on WhatsApp Button */}
               <button
@@ -989,73 +969,57 @@ export default function ReviewForm() {
             {/* Executive Co-Branded Top Header (Exact Match to User Reference) */}
             <div className="relative overflow-hidden">
               {/* Deck 1: Institutional Partner Bar */}
-              <div className="bg-white px-5 py-4 sm:px-8 sm:py-5 border-b border-gray-150 flex flex-wrap items-center justify-between gap-4">
-                {/* Partner Logos Strip */}
-                <div className="flex items-center gap-3 sm:gap-6 flex-wrap">
-                  {/* Tadoba TATR Logo (Significantly bigger & more prominent) */}
-                  <div className="flex items-center flex-shrink-0">
-                    <Image
-                      src="/tadoba_logo.jpeg"
-                      alt="Tadoba-Andhari Tiger Reserve"
-                      width={96}
-                      height={96}
-                      className="h-16 sm:h-20 md:h-22 w-auto object-contain"
-                      priority
-                    />
-                  </div>
+              <div className="bg-white px-3 py-3 sm:px-8 sm:py-5 border-b border-gray-150">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  {/* Partner Logos Strip: Strictly ONE line on mobile & desktop */}
+                  <div className="flex items-center justify-between sm:justify-start gap-2 xs:gap-3.5 sm:gap-6 flex-nowrap w-full sm:w-auto min-w-0">
+                    {/* Tadoba TATR Logo */}
+                    <div className="flex items-center flex-shrink-0">
+                      <Image
+                        src="/tadoba_logo.jpeg"
+                        alt="Tadoba-Andhari Tiger Reserve"
+                        width={96}
+                        height={96}
+                        className="h-11 xs:h-13 sm:h-18 md:h-20 w-auto object-contain"
+                        priority
+                      />
+                    </div>
 
-                  {/* Vertical Divider */}
-                  <div className="hidden sm:block h-10 sm:h-12 w-px bg-gray-200"></div>
+                    {/* Vertical Divider & Association Indicator */}
+                    <div className="flex items-center gap-1.5 xs:gap-2 sm:gap-3 flex-shrink-0">
+                      <div className="h-7 sm:h-11 w-px bg-gray-200"></div>
+                      <span className="text-[8px] xs:text-[10px] sm:text-xs font-semibold tracking-wider text-gray-400 uppercase text-center whitespace-nowrap">
+                        {translations[lang]?.header?.inAssocWith ||
+                          "IN ASSOCIATION WITH"}
+                      </span>
+                      <div className="h-7 sm:h-11 w-px bg-gray-200"></div>
+                    </div>
 
-                  {/* IN ASSOCIATION WITH Text */}
-                  <div className="flex items-center">
-                    <span className="text-[11px] sm:text-xs font-semibold tracking-wider text-gray-400 uppercase whitespace-nowrap">
-                      {translations[lang]?.header?.inAssocWith ||
-                        "IN ASSOCIATION WITH"}
-                    </span>
-                  </div>
-
-                  {/* Vertical Divider */}
-                  <div className="hidden sm:block h-10 sm:h-12 w-px bg-gray-200"></div>
-
-                  {/* SaafAI Flo Mascot & Typography */}
-                  <div className="flex items-center gap-3 flex-shrink-0">
-                    <Image
-                      src="/flo-mascot.webp"
-                      alt="SaafAI Mascot"
-                      width={56}
-                      height={72}
-                      className="h-14 sm:h-16 md:h-18 w-auto object-contain"
-                      priority
-                    />
-                    <div className="text-left">
-                      <div className="text-base sm:text-lg md:text-xl font-bold text-gray-900 leading-tight">
-                        {translations[lang]?.header?.saafAiTitle || "SaafAI"}
-                      </div>
-                      <div className="text-xs sm:text-sm text-gray-500 font-medium leading-tight mt-0.5">
-                        {translations[lang]?.header?.saafAiSub ||
-                          "Smart Facility AI"}
+                    {/* SaafAI Clean Text Logo */}
+                    <div className="brand-header flex-shrink-0 text-center select-none">
+                      <div className="brand-title">
+                        Saaf<span>AI</span>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Segmented Language Selector Pill */}
-                <div className="flex items-center bg-slate-50/90 border border-slate-200 rounded-xl p-1 gap-1 shadow-2xs">
-                  {["en", "hi", "mr"].map((l) => (
-                    <button
-                      key={l}
-                      type="button"
-                      onClick={() => setLang(l)}
-                      className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
-                        lang === l
-                          ? "bg-blue-600 text-white font-bold shadow-xs"
-                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
-                      }`}
-                    >
-                      {l.toUpperCase()}
-                    </button>
-                  ))}
+                  {/* Segmented Language Selector Pill */}
+                  <div className="flex items-center justify-center sm:justify-end self-center sm:self-auto bg-slate-50/90 border border-slate-200 rounded-xl p-0.5 sm:p-1 gap-1 shadow-2xs">
+                    {["en", "hi", "mr"].map((l) => (
+                      <button
+                        key={l}
+                        type="button"
+                        onClick={() => setLang(l)}
+                        className={`px-3 py-1 sm:py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+                          lang === l
+                            ? "bg-blue-600 text-white font-bold shadow-xs"
+                            : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                        }`}
+                      >
+                        {l.toUpperCase()}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -1094,14 +1058,15 @@ export default function ReviewForm() {
                 )}
               </div>
 
-              <CloudinaryImageUploader
+              {/* Upload photo section hidden as not required for now */}
+              {/* <CloudinaryImageUploader
                 images={images}
                 onImagesChange={handleImagesChange}
                 maxImages={3}
                 maxSizeKB={500}
                 takePhotoText={translations[lang].buttons.takephoto}
                 uploadPhotosLabel={translations[lang].fields.uploadPhotos}
-              />
+              /> */}
 
               <div>
                 {/* Header with Label and No Issues checkbox */}
@@ -1197,9 +1162,6 @@ export default function ReviewForm() {
                       "Smart Sanitation & Public Hygiene Monitoring Initiative"}
                   </span>
                 </div>
-                <div className="text-[11px] text-slate-400 font-medium">
-                  <span>Tadoba-Andhari Tiger Reserve × SaafAI</span>
-                </div>
               </div>
             </div>
           </div>
@@ -1207,8 +1169,7 @@ export default function ReviewForm() {
           {/* Outer Industrial Trust Bar */}
           <div className="mt-4 pb-6 text-center text-xs text-slate-400 font-normal">
             <p>
-              © {new Date().getFullYear()} SaafAI &amp; Tadoba-Andhari Tiger
-              Reserve. Public Facility Feedback System.
+              © {new Date().getFullYear()} SaafAI. Public Facility Feedback System.
             </p>
           </div>
         </div>
