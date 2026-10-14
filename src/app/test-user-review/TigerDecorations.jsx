@@ -61,7 +61,7 @@ export default function TigerDecorations() {
       {/* Mid leaf beside checkboxes */}
       <div className="absolute top-[340px] sm:top-[360px] left-1.5 sm:left-3 w-7 sm:w-9 opacity-80 z-0">
         <Image
-          src="/leaf_01.png"
+          src="/leaf_03.png"
           alt="Inward leaf beside issues"
           width={66}
           height={89}
@@ -97,7 +97,7 @@ export default function TigerDecorations() {
       {/* Lower clearly visible tiger pugmark beside comments textarea */}
       <div className="absolute top-[485px] sm:top-[505px] right-5 sm:right-8 w-8 sm:w-10 opacity-85 z-0">
         <Image
-          src="/paw_medium_clean.png"
+          src="/paw_big.png"
           alt="Tiger pugmark beside comments"
           width={56}
           height={68}
