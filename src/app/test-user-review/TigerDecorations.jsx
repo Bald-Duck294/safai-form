@@ -45,10 +45,10 @@ export default function TigerDecorations() {
       </div>
 
       {/* ========================================================
-          3. LEFT MARGIN: DELICATE LEAVES (Evenly spaced down the page)
+          3. LEFT MARGIN: DELICATE LEAVES (Fully within safe margin)
           ======================================================== */}
       {/* Upper leaf sprig beside ratings 1 & 6 */}
-      <div className="absolute top-[95px] sm:top-[105px] -left-2 sm:left-0 w-10 sm:w-13 opacity-75 z-0">
+      <div className="absolute top-[95px] sm:top-[105px] left-1.5 sm:left-3 w-8 sm:w-11 opacity-75 z-0">
         <Image
           src="/leaf_04.png"
           alt="Left leaf sprig"
@@ -58,8 +58,8 @@ export default function TigerDecorations() {
         />
       </div>
 
-      {/* Mid leaf (Moved lower beside checkboxes as requested) */}
-      <div className="absolute top-[340px] sm:top-[360px] -left-1 sm:left-1 w-9 sm:w-12 opacity-80 z-0">
+      {/* Mid leaf beside checkboxes */}
+      <div className="absolute top-[340px] sm:top-[360px] left-1.5 sm:left-3 w-7 sm:w-9 opacity-80 z-0">
         <Image
           src="/leaf_01.png"
           alt="Inward leaf beside issues"
@@ -70,10 +70,10 @@ export default function TigerDecorations() {
       </div>
 
       {/* ========================================================
-          4. RIGHT MARGIN: CASCADING PAWS & LEAVES (Evenly spaced down)
+          4. RIGHT MARGIN: CASCADING PAWS & LEAVES (Safely inset from right border)
           ======================================================== */}
       {/* Upper paw trail beside ratings 5 & 10 */}
-      <div className="absolute top-[55px] sm:top-[65px] right-2 sm:right-4 w-10 sm:w-13 opacity-70 z-0">
+      <div className="absolute top-[55px] sm:top-[65px] right-4 sm:right-7 w-8 sm:w-11 opacity-70 z-0">
         <Image
           src="/paw_trail.png"
           alt="Tiger paw trail"
@@ -84,7 +84,7 @@ export default function TigerDecorations() {
       </div>
 
       {/* Mid paw trail & leaves beside checkboxes */}
-      <div className="absolute top-[330px] sm:top-[350px] right-2 sm:right-3 w-11 sm:w-14 opacity-70 z-0">
+      <div className="absolute top-[330px] sm:top-[350px] right-4 sm:right-6 w-8 sm:w-11 opacity-70 z-0">
         <Image
           src="/right_side_decor_clean.png"
           alt="Paw and leaf decor beside issues"
@@ -95,7 +95,7 @@ export default function TigerDecorations() {
       </div>
 
       {/* Lower clearly visible tiger pugmark beside comments textarea */}
-      <div className="absolute top-[485px] sm:top-[505px] right-3.5 sm:right-5 w-10 sm:w-12 opacity-85 z-0">
+      <div className="absolute top-[485px] sm:top-[505px] right-5 sm:right-8 w-8 sm:w-10 opacity-85 z-0">
         <Image
           src="/paw_medium_clean.png"
           alt="Tiger pugmark beside comments"

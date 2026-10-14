@@ -57,6 +57,7 @@ const translations = {
       name: "Name",
       email: "Email",
       phone: "Phone Number",
+      optional: "Optional",
       additional: "Additional Comments (Optional)",
       selectIssues: "What did the AI miss (Optional):",
       uploadPhotos: "Upload Photos (Optional - Max 3)",
@@ -68,7 +69,7 @@ const translations = {
     },
     placeholders: {
       name: "Your full name",
-      email: "your.email@example.com",
+      email: "your.email@example.com (optional)",
       phone: "10-digit mobile number",
       description: "Share more details about your experience...",
     },
@@ -81,22 +82,20 @@ const translations = {
       shareWhatsApp: "Share on WhatsApp",
       downloadReceipt: "Download Receipt",
       copyToken: "Copy Token",
-      continue: "submit",
+      continue: "Continue",
       takephoto: "Activate AI Lens",
       getCurrentLocation: "Get Current Location",
       detecting: "Detecting...",
     },
     messages: {
-      thankYou: "Thank You!",
+      thankYou: "Thank You for Submitting!",
+      thankYouDetailed:
+        "Your feedback and details have been received successfully. Your contribution helps us maintain clean, hygienic, and well-managed facilities.",
       successMessage: "Your washroom review has been submitted successfully.",
-      fillRequired: "Please fill all required fields.",
-      submitError: "Something went wrong. Please try again.",
-      locationRequired: "Location is a required field.",
-      tokenCopied: "Token number copied to clipboard!",
       nameRequired: "Name is required",
       emailRequired: "Please enter a valid email",
       phoneInvalid: "Phone must be at least 10 digits",
-      contactUpdateSuccess: "Contact details updated successfully!",
+      contactUpdateSuccess: "Thank you! Contact details submitted successfully.",
       locationNotSupported: "Geolocation is not supported by this browser.",
       locationPermissionDenied:
         "Location access denied. Please enable location permissions.",
@@ -159,9 +158,10 @@ const translations = {
     subtitle: "अपना अनुभव साझा करके दूसरों की मदद करें।",
     ratingLabel: "कुल रेटिंग *",
     fields: {
-      name: "नाम ",
-      email: "ईमेल ",
-      phone: "फ़ोन नंबर ",
+      name: "नाम",
+      email: "ईमेल",
+      phone: "फ़ोन नंबर",
+      optional: "वैकल्पिक",
       additional: "अतिरिक्त टिप्पणियाँ (वैकल्पिक)",
       selectIssues: "AI से क्या छूट गया? (वैकल्पिक):",
       uploadPhotos: "फ़ोटो अपलोड करें (वैकल्पिक - अधिकतम 3)",
@@ -173,7 +173,7 @@ const translations = {
     },
     placeholders: {
       name: "आपका पूरा नाम",
-      email: "आपका.ईमेल@उदाहरण.com",
+      email: "आपका.ईमेल@उदाहरण.com (वैकल्पिक)",
       phone: "10 अंकों का मोबाइल नंबर",
       description: "अपने अनुभव के बारे में और बताएं...",
     },
@@ -186,22 +186,20 @@ const translations = {
       shareWhatsApp: "व्हाट्सएप पर शेयर करें",
       downloadReceipt: "रसीद डाउनलोड करें",
       copyToken: "टोकन कॉपी करें",
-      continue: "जमा करें",
+      continue: "आगे बढ़ें",
       takephoto: " AI लेंस सक्रिय करें",
       getCurrentLocation: "वर्तमान स्थान प्राप्त करें",
       detecting: "पता लगाया जा रहा है...",
     },
     messages: {
-      thankYou: "धन्यवाद!",
+      thankYou: "सबमिट करने के लिए धन्यवाद!",
+      thankYouDetailed:
+        "आपकी समीक्षा और संपर्क विवरण सफलतापूर्वक प्राप्त हो गए हैं। आपका सहयोग ताडोबा में स्वच्छ और उच्च-स्तरीय सुविधाएं सुनिश्चित करने में मदद करता है।",
       successMessage: "आपकी शौचालय समीक्षा सफलतापूर्वक जमा हो गई है।",
-      fillRequired: "कृपया सभी आवश्यक फ़ील्ड भरें।",
-      submitError: "कुछ गलत हुआ। कृपया फिर से कोशिश करें।",
-      locationRequired: "स्थान एक आवश्यक फ़ील्ड है।",
-      tokenCopied: "टोकन नंबर क्लिपबोर्ड पर कॉपी हो गया!",
       nameRequired: "नाम आवश्यक है",
       emailRequired: "कृपया एक वैध ईमेल दर्ज करें",
       phoneInvalid: "फ़ोन कम से कम 10 अंकों का होना चाहिए",
-      contactUpdateSuccess: "संपर्क विवरण सफलतापूर्वक अपडेट किया गया!",
+      contactUpdateSuccess: "धन्यवाद! संपर्क विवरण सफलतापूर्वक दर्ज किया गया।",
       locationNotSupported: "यह ब्राउज़र भौगोलिक स्थान का समर्थन नहीं करता।",
       locationPermissionDenied:
         "स्थान एक्सेस अस्वीकृत। कृपया स्थान अनुमतियाँ सक्षम करें।",
@@ -264,9 +262,10 @@ const translations = {
     subtitle: "तुमचा अनुभव शेअर करून इतरांना मदत करा.",
     ratingLabel: "एकूण रेटिंग *",
     fields: {
-      name: "नाव ",
+      name: "नाव",
       email: "ईमेल",
       phone: "फोन नंबर",
+      optional: "ऐच्छिक",
       additional: "अतिरिक्त टिप्पण्या (ऐच्छिक)",
       selectIssues: "AI कडून काय चुकलं? (ऐच्छिक):",
       uploadPhotos: "फोटो अपलोड करा (ऐच्छिक - कमाल 3)",
@@ -278,7 +277,7 @@ const translations = {
     },
     placeholders: {
       name: "तुमचे पूर्ण नाव",
-      email: "तुमचा.ईमेल@उदाहरण.com",
+      email: "तुमचा.ईमेल@उदाहरण.com (ऐच्छिक)",
       phone: "10 अंकांचा मोबाइल नंबर",
       description: "तुमच्या अनुभवाबद्दल अधिक सांगा...",
     },
@@ -291,22 +290,20 @@ const translations = {
       shareWhatsApp: "व्हाट्सअॅपवर शेअर करा",
       downloadReceipt: "पावती डाउनलोड करा",
       copyToken: "टोकन कॉपी करा",
-      continue: "सादर करा",
+      continue: "पुढे जा",
       takephoto: "AI लेन्स सक्रिय करा",
       getCurrentLocation: "सध्याचे स्थान मिळवा",
       detecting: "शोधत आहे...",
     },
     messages: {
-      thankYou: "धन्यवाद!",
+      thankYou: "सबमिट केल्याबद्दल धन्यवाद!",
+      thankYouDetailed:
+        "आपला अभिप्राय आणि संपर्क तपशील यशस्वीरीत्या प्राप्त झाले आहेत. आपले योगदान ताडोबा येथील स्वच्छता आणि सुविधा उत्तम राखण्यास मदत करते.",
       successMessage: "तुमचे शौचालय पुनरावलोकन यशस्वीरित्या सबमिट झाले आहे.",
-      fillRequired: "कृपया सर्व आवश्यक फील्ड भरा.",
-      submitError: "काहीतरी चूक झाली. कृपया पुन्हा प्रयत्न करा.",
-      locationRequired: "स्थान हे एक आवश्यक फील्ड आहे.",
-      tokenCopied: "टोकन नंबर क्लिपबोर्डवर कॉपी झाला!",
       nameRequired: "नाव आवश्यक आहे",
       emailRequired: "कृपया एक वैध ईमेल प्रविष्ट करा",
       phoneInvalid: "फोन कमीतकमी 10 अंकांचा असावा",
-      contactUpdateSuccess: "संपर्क तपशील यशस्वीरित्या अपडेट केले!",
+      contactUpdateSuccess: "धन्यवाद! संपर्क तपशील यशस्वीरित्या नोंदवले गेले.",
       locationNotSupported: "हा ब्राउझर भौगोलिक स्थानाचे समर्थन करत नाही.",
       locationPermissionDenied:
         "स्थान प्रवेश नाकारला. कृपया स्थान परवानग्या सक्षम करा.",
@@ -402,17 +399,17 @@ const JagrukNagrikPopup = ({
   const validateContactForm = () => {
     const newErrors = {};
 
-    // ✅ Check if all fields are filled
+    // Name is required
     if (!contactDetails.name.trim()) {
       newErrors.name = tMsg.nameRequired;
     }
 
-    if (!contactDetails.email.trim()) {
-      newErrors.email = tMsg.emailRequired;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactDetails.email)) {
+    // Email is optional - only validate format if provided
+    if (contactDetails.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactDetails.email.trim())) {
       newErrors.email = tMsg.emailRequired;
     }
 
+    // Phone is required
     if (!contactDetails.phone.trim()) {
       newErrors.phone = tMsg.phoneInvalid;
     } else if (contactDetails.phone.trim().length < 10) {
@@ -597,7 +594,7 @@ const JagrukNagrikPopup = ({
                 <div>
                   <label className="flex items-center text-xs xs:text-sm font-medium text-gray-700 mb-1.5 xs:mb-2">
                     <User className="h-3.5 w-3.5 xs:h-4 xs:w-4 mr-1.5 xs:mr-2" />
-                    {translations[lang].fields.name}
+                    {translations[lang].fields.name} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -620,7 +617,7 @@ const JagrukNagrikPopup = ({
                 <div>
                   <label className="flex items-center text-xs xs:text-sm font-medium text-gray-700 mb-1.5 xs:mb-2">
                     <Mail className="h-3.5 w-3.5 xs:h-4 xs:w-4 mr-1.5 xs:mr-2" />
-                    {translations[lang].fields.email}
+                    {translations[lang].fields.email} ({translations[lang].fields.optional || "Optional"})
                   </label>
                   <input
                     type="email"
@@ -643,7 +640,7 @@ const JagrukNagrikPopup = ({
                 <div>
                   <label className="flex items-center text-xs xs:text-sm font-medium text-gray-700 mb-1.5 xs:mb-2">
                     <Phone className="h-3.5 w-3.5 xs:h-4 xs:w-4 mr-1.5 xs:mr-2" />
-                    {translations[lang].fields.phone}
+                    {translations[lang].fields.phone} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="tel"
@@ -666,29 +663,23 @@ const JagrukNagrikPopup = ({
             </>
           ) : (
             <>
-              {/* Success Step - After submitting contact details */}
-              <div className="text-center">
-                <CheckCircle className="h-12 w-12 xs:h-14 xs:w-14 sm:h-16 sm:w-16 text-blue-500 mx-auto mb-2 xs:mb-3" />
-                <p className="text-gray-600 text-sm xs:text-base sm:text-lg">
-                  {t.description}
+              {/* Success Step - Thank you message */}
+              <div className="text-center py-6 space-y-3">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-1">
+                  <CheckCircle className="h-10 w-10 text-blue-600" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
+                  {translations[lang]?.messages?.thankYou || "Thank You!"}
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-sm mx-auto">
+                  {translations[lang]?.messages?.thankYouDetailed ||
+                    "Thank you for submitting! Your contribution helps us maintain clean and hygienic facilities."}
                 </p>
               </div>
 
-              {/* Token Number - Hidden as requested */}
-
-              {/* Share on WhatsApp Button */}
-              <button
-                onClick={shareOnWhatsApp}
-                className="w-full flex items-center justify-center gap-2 bg-green-600 text-white py-3 xs:py-3.5 sm:py-4 px-4 xs:px-6 rounded-xl hover:bg-green-700 transition-all transform hover:scale-105 font-medium text-sm xs:text-base"
-              >
-                <MessageCircle className="h-5 w-5 xs:h-6 xs:w-6" />
-                <span>{tBtn.shareWhatsApp}</span>
-              </button>
-
-              {/* Close Button */}
               <button
                 onClick={onClose}
-                className="w-full bg-gray-100 text-gray-700 py-2.5 xs:py-3 px-4 xs:px-6 rounded-xl hover:bg-gray-200 transition-colors font-medium text-sm xs:text-base"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3.5 px-4 xs:px-6 rounded-xl font-bold text-sm xs:text-base transition-all"
               >
                 {tBtn.close}
               </button>

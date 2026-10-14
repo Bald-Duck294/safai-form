@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   User,
@@ -56,13 +56,14 @@ const translations = {
       name: "Name",
       email: "Email",
       phone: "Phone Number",
+      optional: "Optional",
       additional: "Additional Comments (Optional)",
       selectIssues: "What issues did you find? (Optional):",
       noIssues: "No Issues",
     },
     placeholders: {
       name: "Your full name",
-      email: "your.email@example.com",
+      email: "your.email@example.com (optional)",
       phone: "10-digit mobile number",
       description: "Share more details about your experience...",
     },
@@ -75,12 +76,14 @@ const translations = {
       continue: "Continue",
     },
     messages: {
-      thankYou: "Thank You!",
+      thankYou: "Thank You for Submitting!",
+      thankYouDetailed:
+        "Your feedback and details have been received successfully. Your contribution helps us maintain clean, hygienic, and well-managed facilities.",
       successMessage: "Your washroom review has been submitted successfully.",
       nameRequired: "Name is required",
       emailRequired: "Please enter a valid email",
       phoneInvalid: "Phone must be at least 10 digits",
-      contactUpdateSuccess: "Contact details updated successfully!",
+      contactUpdateSuccess: "Thank you! Contact details submitted successfully.",
     },
     campaign: {
       title: "Swachh Drishti Abhiyan",
@@ -130,13 +133,14 @@ const translations = {
       name: "नाम",
       email: "ईमेल",
       phone: "फ़ोन नंबर",
+      optional: "वैकल्पिक",
       additional: "अतिरिक्त टिप्पणियाँ (वैकल्पिक)",
       selectIssues: "आपको क्या समस्याएँ मिलीं? (वैकल्पिक):",
       noIssues: "कोई समस्या नहीं",
     },
     placeholders: {
       name: "आपका पूरा नाम",
-      email: "आपका.ईमेल@उदाहरण.com",
+      email: "आपका.ईमेल@उदाहरण.com (वैकल्पिक)",
       phone: "10 अंकों का मोबाइल नंबर",
       description: "अपने अनुभव के बारे में और बताएं...",
     },
@@ -149,12 +153,14 @@ const translations = {
       continue: "आगे बढ़ें",
     },
     messages: {
-      thankYou: "धन्यवाद!",
+      thankYou: "सबमिट करने के लिए धन्यवाद!",
+      thankYouDetailed:
+        "आपकी समीक्षा और संपर्क विवरण सफलतापूर्वक प्राप्त हो गए हैं। आपका सहयोग ताडोबा में स्वच्छ और उच्च-स्तरीय सुविधाएं सुनिश्चित करने में मदद करता है।",
       successMessage: "आपकी शौचालय समीक्षा सफलतापूर्वक जमा हो गई है।",
       nameRequired: "नाम आवश्यक है",
       emailRequired: "कृपया एक वैध ईमेल दर्ज करें",
       phoneInvalid: "फ़ोन कम से कम 10 अंकों का होना चाहिए",
-      contactUpdateSuccess: "संपर्क विवरण सफलतापूर्वक अपडेट किया गया!",
+      contactUpdateSuccess: "धन्यवाद! संपर्क विवरण सफलतापूर्वक दर्ज किया गया।",
     },
     campaign: {
       title: "स्वच्छ दृष्टि अभियान",
@@ -204,13 +210,14 @@ const translations = {
       name: "नाव",
       email: "ईमेल",
       phone: "फोन नंबर",
+      optional: "ऐच्छिक",
       additional: "अतिरिक्त टिप्पण्या (ऐच्छिक)",
       selectIssues: "तुम्हाला कोणत्या समस्या आढळल्या? (ऐच्छिक):",
       noIssues: "कोणतीही समस्या नाही",
     },
     placeholders: {
       name: "तुमचे पूर्ण नाव",
-      email: "तुमचा.ईमेल@उदाहरण.com",
+      email: "तुमचा.ईमेल@उदाहरण.com (ऐच्छिक)",
       phone: "10 अंकांचा मोबाइल नंबर",
       description: "तुमच्या अनुभवाबद्दल अधिक सांगा...",
     },
@@ -223,12 +230,14 @@ const translations = {
       continue: "पुढे जा",
     },
     messages: {
-      thankYou: "धन्यवाद!",
+      thankYou: "सबमिट केल्याबद्दल धन्यवाद!",
+      thankYouDetailed:
+        "आपला अभिप्राय आणि संपर्क तपशील यशस्वीरीत्या प्राप्त झाले आहेत. आपले योगदान ताडोबा येथील स्वच्छता आणि सुविधा उत्तम राखण्यास मदत करते.",
       successMessage: "आपली शौचालय समीक्षा यशस्वीरीत्या नोंदवली गेली.",
       nameRequired: "नाव आवश्यक आहे",
       emailRequired: "कृपया वैध ईमेल टाका",
       phoneInvalid: "फोन नंबर किमान 10 अंकांचा असावा",
-      contactUpdateSuccess: "संपर्क माहिती यशस्वीरीत्या अपडेट केली!",
+      contactUpdateSuccess: "धन्यवाद! संपर्क तपशील यशस्वीरित्या नोंदवले गेले.",
     },
     campaign: {
       title: "स्वच्छ दृष्टी अभियान",
@@ -289,14 +298,25 @@ const NatureSuccessModal = ({
   const tMsg = translations[lang].messages;
   const tBtn = translations[lang].buttons;
 
+  useEffect(() => {
+    if (isOpen) {
+      setStep(1);
+      setContactDetails({
+        name: "",
+        email: "",
+        phone: "",
+      });
+      setErrors({});
+    }
+  }, [isOpen]);
+
   if (!isOpen || !reviewData) return null;
 
   const validateContactForm = () => {
     const newErrors = {};
     if (!contactDetails.name.trim()) newErrors.name = tMsg.nameRequired;
-    if (!contactDetails.email.trim()) {
-      newErrors.email = tMsg.emailRequired;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactDetails.email)) {
+    // Email is optional - only validate format if entered
+    if (contactDetails.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactDetails.email.trim())) {
       newErrors.email = tMsg.emailRequired;
     }
     if (!contactDetails.phone.trim()) {
@@ -318,74 +338,6 @@ const NatureSuccessModal = ({
     }
   };
 
-  const generatePDF = () => {
-    const doc = new jsPDF();
-    doc.setFillColor(40, 78, 58);
-    doc.rect(0, 0, 210, 42, "F");
-
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(22);
-    doc.setFont(undefined, "bold");
-    doc.text("SAAF AI - Swachh Drishti", 105, 17, { align: "center" });
-
-    doc.setFontSize(10);
-    doc.setFont(undefined, "normal");
-    doc.text("In association with Tadoba-Andhari Tiger Reserve", 105, 26, {
-      align: "center",
-    });
-
-    doc.setFontSize(12);
-    doc.setFont(undefined, "bold");
-    doc.text("Contribution Receipt", 105, 36, { align: "center" });
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(14);
-    doc.setFont(undefined, "bold");
-    doc.text("Thank you for contributing!", 20, 60);
-
-    doc.setFontSize(12);
-    doc.setFont(undefined, "normal");
-    doc.text("I just contributed to improving public facilities!", 20, 75);
-
-    doc.setFontSize(14);
-    doc.setFont(undefined, "bold");
-    doc.text("Your Details:", 20, 95);
-
-    doc.setFontSize(12);
-    doc.setFont(undefined, "normal");
-    doc.text(`Name: ${contactDetails.name}`, 20, 110);
-    doc.text(`Email: ${contactDetails.email}`, 20, 120);
-    doc.text(`Phone: ${contactDetails.phone}`, 20, 130);
-
-    doc.setFontSize(10);
-    doc.setTextColor(100, 100, 100);
-    doc.text("Join the movement for cleaner public spaces!", 105, 160, {
-      align: "center",
-    });
-
-    return doc;
-  };
-
-  const shareOnWhatsApp = async () => {
-    try {
-      const doc = generatePDF();
-      const pdfBlob = doc.output("blob");
-      const fileName = `Saaf-AI-Receipt.pdf`;
-      const file = new File([pdfBlob], fileName, { type: "application/pdf" });
-
-      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({ files: [file] });
-        toast.success("Shared successfully!");
-      } else {
-        toast.error("Sharing not supported on this browser.");
-      }
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        toast.error("Failed to share.");
-      }
-    }
-  };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 xs:p-4 sm:p-6 bg-black/60 backdrop-blur-sm overflow-y-auto">
       <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-[95%] xs:max-w-md sm:max-w-lg my-auto overflow-hidden flex flex-col max-h-[90vh]">
@@ -402,7 +354,15 @@ const NatureSuccessModal = ({
             <Award className="h-7 w-7 text-emerald-200" />
           </div>
           <h2 className="text-xl sm:text-2xl font-bold mb-1">{t.title}</h2>
-          <p className="text-emerald-100 text-xs sm:text-sm">{t.subtitle}</p>
+          <p className="text-emerald-100 text-xs sm:text-sm">
+            {step === 2
+              ? lang === "hi"
+                ? "आपकी प्रतिक्रिया सफलतापूर्वक प्राप्त हुई"
+                : lang === "mr"
+                ? "आपला अभिप्राय यशस्वीरीत्या प्राप्त झाला"
+                : "Submission Complete"
+              : t.subtitle}
+          </p>
         </div>
 
         {/* Content Area */}
@@ -428,7 +388,7 @@ const NatureSuccessModal = ({
                 <div>
                   <label className="flex items-center text-xs font-semibold text-gray-700 mb-1.5">
                     <User className="h-3.5 w-3.5 mr-1.5 text-[#284e3a]" />
-                    {translations[lang].fields.name}
+                    {translations[lang].fields.name} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -445,7 +405,7 @@ const NatureSuccessModal = ({
                 <div>
                   <label className="flex items-center text-xs font-semibold text-gray-700 mb-1.5">
                     <Mail className="h-3.5 w-3.5 mr-1.5 text-[#284e3a]" />
-                    {translations[lang].fields.email}
+                    {translations[lang].fields.email} ({translations[lang].fields.optional || "Optional"})
                   </label>
                   <input
                     type="email"
@@ -462,7 +422,7 @@ const NatureSuccessModal = ({
                 <div>
                   <label className="flex items-center text-xs font-semibold text-gray-700 mb-1.5">
                     <Phone className="h-3.5 w-3.5 mr-1.5 text-[#284e3a]" />
-                    {translations[lang].fields.phone}
+                    {translations[lang].fields.phone} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="tel"
@@ -493,25 +453,27 @@ const NatureSuccessModal = ({
             </>
           ) : (
             <>
-              <div className="text-center py-4">
-                <CheckCircle className="h-14 w-14 text-[#284e3a] mx-auto mb-3" />
-                <p className="text-gray-700 text-base font-semibold">{t.description}</p>
+              <div className="text-center py-6 space-y-3">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-1">
+                  <CheckCircle className="h-10 w-10 text-[#284e3a]" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
+                  {translations[lang]?.messages?.thankYou || "Thank You!"}
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-sm mx-auto">
+                  {translations[lang]?.messages?.thankYouDetailed ||
+                    "Thank you for submitting! Your contribution helps us maintain clean and hygienic facilities."}
+                </p>
               </div>
 
-              <button
-                onClick={shareOnWhatsApp}
-                className="w-full flex items-center justify-center gap-2 bg-[#284e3a] text-white py-3 px-5 rounded-xl hover:bg-[#1e3a29] transition-all font-medium text-sm sm:text-base cursor-pointer"
-              >
-                <MessageCircle className="h-5 w-5" />
-                <span>{tBtn.shareWhatsApp}</span>
-              </button>
-
-              <button
-                onClick={onClose}
-                className="w-full bg-gray-100 text-gray-700 py-3 px-5 rounded-xl hover:bg-gray-200 transition-colors font-medium text-sm sm:text-base cursor-pointer"
-              >
-                {tBtn.close}
-              </button>
+              <div className="pt-2">
+                <button
+                  onClick={onClose}
+                  className="w-full bg-[#284e3a] hover:bg-[#1e3a29] text-white py-3.5 px-5 rounded-xl font-bold text-sm sm:text-base transition-all cursor-pointer shadow-sm hover:shadow-md"
+                >
+                  {translations[lang]?.buttons?.close || "Close"}
+                </button>
+              </div>
             </>
           )}
         </div>
